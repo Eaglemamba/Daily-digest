@@ -112,13 +112,29 @@ The export modal formats selected articles for pasting directly into:
 ## File Structure
 
 ```
-daily-digest/
+Daily-digest/
 ├── README.md
-├── SKILL_v6_1_5.md          ← Active skill file (upload to Claude Project)
-├── CHANGELOG.md             ← Full version history
-└── sample/
-    └── digest-sample.html   ← Example output
+├── SKILL_v6_1_5.md               ← Active skill file (upload to Claude Project)
+├── CHANGELOG.md                  ← Full version history
+├── sample/
+│   └── digest-sample.html        ← Example output
+└── digests/
+    ├── 2026-03/
+    │   ├── digest-2026-03-21.html
+    │   └── digest-2026-03-22.html
+    ├── 2026-02/
+    │   └── digest-2026-02-15.html
+    └── ...
 ```
+
+### Adding a new digest
+
+Each day, upload the generated HTML into `digests/YYYY-MM/`:
+
+1. Go to the repo → `digests/` → your month folder
+2. Click `Add file` → `Upload files`
+3. Drop in `digest-YYYY-MM-DD.html`
+4. Commit message: `Add digest YYYY-MM-DD`
 
 ---
 
