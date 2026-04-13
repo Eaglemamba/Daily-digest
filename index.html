@@ -14,16 +14,17 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
         .digest-card { transition: all 0.2s ease; }
         .digest-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(72,42,119,0.12); }
+        .column-header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
 
     <!-- Header -->
     <div class="bg-gradient-to-r from-amaran-purple to-amaran-purple-light text-white px-6 py-8">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-7xl mx-auto">
             <div class="text-center">
                 <h1 class="text-3xl font-bold tracking-tight">Daily Digest Dashboard</h1>
-                <p class="text-purple-200 text-sm mt-1">Pharma x Leadership x AI — Multi-Domain News Digest Archive</p>
+                <p class="text-purple-200 text-sm mt-1">Pharma x AI x Leadership — Multi-Domain News Digest Archive</p>
                 <p class="text-xs text-purple-300 mt-2">
                     10 newsletter sources | Strict 24hr TST filter |
                     <a href="https://github.com/Eaglemamba/daily-digest" target="_blank" class="text-white underline underline-offset-2 hover:text-purple-100">GitHub Repo</a>
@@ -33,19 +34,12 @@
         </div>
     </div>
 
-    <!-- Domain distribution bar -->
-    <div class="max-w-6xl mx-auto px-6 mt-4">
-        <div class="flex h-2 rounded-full overflow-hidden bg-gray-200" id="domainBar"></div>
-        <div class="flex gap-4 flex-wrap mt-2" id="domainLegend"></div>
-    </div>
-
-    <!-- Search + Filters -->
-    <div class="max-w-6xl mx-auto px-6 mt-4 flex gap-3 flex-wrap items-center">
+    <!-- Search -->
+    <div class="max-w-7xl mx-auto px-6 mt-4 flex gap-3 flex-wrap items-center">
         <input type="text" id="searchBox" placeholder="Search dates, sources, categories..."
                class="flex-1 min-w-[250px] px-4 py-2 bg-white border border-gray-200 rounded-lg text-gray-800 text-sm focus:outline-none focus:border-amaran-purple focus:ring-1 focus:ring-amaran-purple">
         <span id="resultCount" class="text-xs text-amaran-purple font-medium" style="display:none"></span>
-        <div class="flex gap-2 flex-wrap" id="filterBtns"></div>
-        <select id="sortSelect" onchange="renderCards()" class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-gray-700 text-xs focus:outline-none focus:border-amaran-purple">
+        <select id="sortSelect" onchange="renderColumns()" class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-gray-700 text-xs focus:outline-none focus:border-amaran-purple">
             <option value="date-desc">Newest first</option>
             <option value="date-asc">Oldest first</option>
             <option value="articles-desc">Most articles</option>
@@ -53,29 +47,71 @@
         </select>
     </div>
 
-    <!-- Digest card grid -->
-    <div class="max-w-6xl mx-auto px-6 py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="digestGrid"></div>
+    <!-- Three-column layout -->
+    <div class="max-w-7xl mx-auto px-6 py-4 grid grid-cols-1 lg:grid-cols-3 gap-6" id="threeColumns">
+
+        <!-- Pharma Column -->
+        <div class="flex flex-col">
+            <div class="column-header bg-gray-50/90 pb-3">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-3 h-3 rounded-sm bg-red-500"></div>
+                    <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wide">Pharma News</h2>
+                </div>
+                <div class="flex items-center justify-between">
+                    <p class="text-xs text-gray-500">Endpoints News · BioPharma Dive · PDA</p>
+                    <span class="mono text-xs text-red-600 font-semibold" id="pharmaCount">0</span>
+                </div>
+                <div class="h-1 rounded-full bg-red-500/20 mt-2"><div class="h-1 rounded-full bg-red-500" id="pharmaBar" style="width:0%"></div></div>
+            </div>
+            <div class="flex flex-col gap-3 mt-1" id="pharmaCards"></div>
+        </div>
+
+        <!-- AI Column -->
+        <div class="flex flex-col">
+            <div class="column-header bg-gray-50/90 pb-3">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-3 h-3 rounded-sm bg-cyan-500"></div>
+                    <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wide">AI Articles</h2>
+                </div>
+                <div class="flex items-center justify-between">
+                    <p class="text-xs text-gray-500">AI Maker · Import AI · The Batch</p>
+                    <span class="mono text-xs text-cyan-600 font-semibold" id="aiCount">0</span>
+                </div>
+                <div class="h-1 rounded-full bg-cyan-500/20 mt-2"><div class="h-1 rounded-full bg-cyan-500" id="aiBar" style="width:0%"></div></div>
+            </div>
+            <div class="flex flex-col gap-3 mt-1" id="aiCards"></div>
+        </div>
+
+        <!-- HBR Column -->
+        <div class="flex flex-col">
+            <div class="column-header bg-gray-50/90 pb-3">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-3 h-3 rounded-sm bg-indigo-500"></div>
+                    <h2 class="text-sm font-bold text-gray-900 uppercase tracking-wide">Harvard Business Review</h2>
+                </div>
+                <div class="flex items-center justify-between">
+                    <p class="text-xs text-gray-500">HBR · Leadership in Change · Dept of Product</p>
+                    <span class="mono text-xs text-indigo-600 font-semibold" id="hbrCount">0</span>
+                </div>
+                <div class="h-1 rounded-full bg-indigo-500/20 mt-2"><div class="h-1 rounded-full bg-indigo-500" id="hbrBar" style="width:0%"></div></div>
+            </div>
+            <div class="flex flex-col gap-3 mt-1" id="hbrCards"></div>
+        </div>
+
+    </div>
 
     <!-- Footer -->
-    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-xs text-gray-400 border-t border-gray-200 mt-4">
-        <p>Built with Claude AI | <a href="https://github.com/Eaglemamba" class="text-amaran-purple hover:underline">@Eaglemamba</a> | Pharma x Leadership x AI</p>
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center text-xs text-gray-400 border-t border-gray-200 mt-4">
+        <p>Built with Claude AI | <a href="https://github.com/Eaglemamba" class="text-amaran-purple hover:underline">@Eaglemamba</a> | Pharma x AI x Leadership</p>
     </div>
 
 <script src="dashboard-data.js"></script>
 <script>
-// --- Filter state ---
-const filterOptions = ['all', 'pharma-decipher', 'hbr-review', 'ai-articles', 'light-news'];
-const filterLabels = { 'all': 'All', 'pharma-decipher': 'Pharma', 'hbr-review': 'Leadership', 'ai-articles': 'AI', 'light-news': 'Light Days' };
-let activeFilter = 'all';
-
 // --- Stats ---
 function renderStats() {
     const total = digests.length;
     const totalArticles = digests.reduce((s, d) => s + d.articles, 0);
     const avgArticles = total > 0 ? (totalArticles / total).toFixed(1) : '0';
-    const dateRange = total > 0
-        ? formatShortDate(digests[digests.length - 1].date) + ' — ' + formatShortDate(digests[0].date)
-        : '—';
     const lightDays = digests.filter(d => d.lightNewsDay).length;
 
     const stats = [
@@ -93,45 +129,12 @@ function renderStats() {
     ).join('');
 }
 
-// --- Domain distribution bar ---
-function renderDomainBar() {
-    // Count total domain appearances across all digests
-    const domainCount = {};
-    let totalDomains = 0;
-    digests.forEach(d => {
-        d.domains.forEach(dom => {
-            domainCount[dom] = (domainCount[dom] || 0) + 1;
-            totalDomains++;
-        });
-    });
-    const sorted = Object.entries(domainCount).sort((a, b) => b[1] - a[1]);
-    document.getElementById('domainBar').innerHTML = sorted.map(([dom, c]) =>
-        `<div style="width:${c / totalDomains * 100}%;background:${domainMeta[dom]?.color || '#6b7280'}"></div>`
-    ).join('');
-    document.getElementById('domainLegend').innerHTML = sorted.map(([dom, c]) =>
-        `<div class="flex items-center gap-1.5 text-xs text-gray-500">
-            <div class="w-2 h-2 rounded-sm" style="background:${domainMeta[dom]?.color || '#6b7280'}"></div>
-            ${domainMeta[dom]?.label || dom} (${c})
-        </div>`
-    ).join('');
-}
-
-// --- Filters ---
-function initFilters() {
-    document.getElementById('filterBtns').innerHTML = filterOptions.map(f => {
-        const active = f === activeFilter;
-        const cls = active
-            ? 'bg-amaran-purple text-white border-amaran-purple'
-            : 'border-gray-200 text-gray-600 bg-white hover:border-amaran-purple hover:text-amaran-purple';
-        return `<button class="px-3 py-1.5 rounded-lg text-xs font-medium border ${cls}" onclick="setFilter('${f}')">${filterLabels[f]}</button>`;
-    }).join('');
-}
-
-function setFilter(f) {
-    activeFilter = f;
-    initFilters();
-    renderCards();
-}
+// --- Domain config ---
+const domainColumns = {
+    'pharma-decipher': { containerId: 'pharmaCards', countId: 'pharmaCount', barId: 'pharmaBar', accent: 'red' },
+    'ai-articles':     { containerId: 'aiCards',     countId: 'aiCount',     barId: 'aiBar',     accent: 'cyan' },
+    'hbr-review':      { containerId: 'hbrCards',    countId: 'hbrCount',    barId: 'hbrBar',    accent: 'indigo' }
+};
 
 // --- Filtered + sorted data ---
 function getFiltered() {
@@ -149,12 +152,6 @@ function getFiltered() {
         );
     }
 
-    if (activeFilter === 'light-news') {
-        d = d.filter(x => x.lightNewsDay);
-    } else if (activeFilter !== 'all') {
-        d = d.filter(x => x.domains.includes(activeFilter));
-    }
-
     const sort = document.getElementById('sortSelect').value;
     d.sort((a, b) => {
         if (sort === 'date-desc') return b.date.localeCompare(a.date);
@@ -165,58 +162,68 @@ function getFiltered() {
     return d;
 }
 
-// --- Render cards ---
-function renderCards() {
+// --- Build a single card ---
+function buildCard(d, accent) {
+    const catBadges = d.categories.slice(0, 5).map(c => {
+        const cls = categoryColors[c] || 'bg-gray-100 text-gray-600 border-gray-200';
+        return `<span class="text-[10px] px-2 py-0.5 rounded-full font-medium border ${cls}">${c}</span>`;
+    }).join('');
+    const moreCount = d.categories.length > 5 ? `<span class="text-[10px] text-gray-400">+${d.categories.length - 5}</span>` : '';
+
+    const lightBadge = d.lightNewsDay
+        ? '<span class="text-[10px] px-2 py-0.5 rounded-full font-medium bg-yellow-50 text-yellow-700 border border-yellow-300">Light Day</span>'
+        : '';
+
+    const articleColor = d.articles >= 10 ? 'text-green-600' : d.articles >= 5 ? 'text-amber-600' : 'text-red-500';
+    const sourceList = d.sources.join(', ');
+
+    return `<div class="digest-card bg-white rounded-xl border border-gray-200 p-4 flex flex-col">
+        <div class="flex items-center justify-between">
+            <span class="mono text-xs text-gray-400">${d.date}</span>
+            <span class="text-[10px] px-1.5 py-0.5 rounded bg-amaran-purple/10 text-amaran-purple font-medium">${d.dayOfWeek}</span>
+        </div>
+        <h3 class="text-sm font-semibold text-gray-900 mt-2 leading-snug">${formatFullDate(d.date)}</h3>
+        <div class="flex gap-1.5 flex-wrap mt-2">${catBadges} ${moreCount} ${lightBadge}</div>
+        <p class="text-xs text-gray-500 mt-2 flex-1">${sourceList}</p>
+        <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
+            <div class="flex items-center gap-3">
+                <span class="mono font-semibold ${articleColor}">${d.articles}</span>
+                <span class="text-[10px] text-gray-400">articles</span>
+                <span class="mono text-[10px] text-gray-400">${d.sourcesCount} sources</span>
+            </div>
+            <a href="${d.file}" target="_blank" class="text-xs bg-amaran-purple text-white px-3 py-1 rounded hover:bg-amaran-purple-light no-underline">Open</a>
+        </div>
+    </div>`;
+}
+
+// --- Render columns ---
+function renderColumns() {
     const docs = getFiltered();
     const q = document.getElementById('searchBox').value.trim();
     const countEl = document.getElementById('resultCount');
     countEl.textContent = q ? `${docs.length} results` : '';
     countEl.style.display = q ? 'inline' : 'none';
 
-    if (!docs.length) {
-        document.getElementById('digestGrid').innerHTML =
-            '<div class="col-span-full text-center py-12 text-gray-400">No digests match your search.</div>';
-        return;
-    }
+    const maxDigests = digests.length || 1;
 
-    document.getElementById('digestGrid').innerHTML = docs.map(d => {
-        const domainBadges = d.domains.map(dom => {
-            const meta = domainMeta[dom] || { label: dom, bgClass: 'bg-gray-100 text-gray-600' };
-            return `<span class="text-[10px] px-2 py-0.5 rounded-full font-medium border ${meta.bgClass}">${meta.label}</span>`;
-        }).join('');
+    Object.entries(domainColumns).forEach(([domainKey, cfg]) => {
+        const filtered = docs.filter(d => d.domains.includes(domainKey));
+        const container = document.getElementById(cfg.containerId);
 
-        const catBadges = d.categories.slice(0, 5).map(c => {
-            const cls = categoryColors[c] || 'bg-gray-100 text-gray-600 border-gray-200';
-            return `<span class="text-[10px] px-2 py-0.5 rounded-full font-medium border ${cls}">${c}</span>`;
-        }).join('');
-        const moreCount = d.categories.length > 5 ? `<span class="text-[10px] text-gray-400">+${d.categories.length - 5}</span>` : '';
+        // Update count
+        document.getElementById(cfg.countId).textContent = filtered.length + (filtered.length === 1 ? ' digest' : ' digests');
 
-        const lightBadge = d.lightNewsDay
-            ? '<span class="text-[10px] px-2 py-0.5 rounded-full font-medium bg-yellow-50 text-yellow-700 border border-yellow-300">Light Day</span>'
-            : '';
+        // Update progress bar
+        const pct = (filtered.length / maxDigests) * 100;
+        document.getElementById(cfg.barId).style.width = pct + '%';
 
-        const articleColor = d.articles >= 10 ? 'text-green-600' : d.articles >= 5 ? 'text-amber-600' : 'text-red-500';
-        const sourceList = d.sources.join(', ');
+        if (!filtered.length) {
+            container.innerHTML = `<div class="text-center py-8 text-gray-400 text-xs">No digests found</div>`;
+            return;
+        }
 
-        return `<div class="digest-card bg-white rounded-xl border border-gray-200 p-4 flex flex-col">
-            <div class="flex items-center justify-between">
-                <span class="mono text-xs text-gray-400">${d.date}</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded bg-amaran-purple/10 text-amaran-purple font-medium">${d.dayOfWeek}</span>
-            </div>
-            <h3 class="text-sm font-semibold text-gray-900 mt-2 leading-snug">Daily Digest — ${formatFullDate(d.date)}</h3>
-            <div class="flex gap-1.5 flex-wrap mt-2">${domainBadges} ${lightBadge}</div>
-            <div class="flex gap-1.5 flex-wrap mt-2">${catBadges} ${moreCount}</div>
-            <p class="text-xs text-gray-500 mt-2 flex-1">${sourceList}</p>
-            <div class="flex items-center justify-between mt-3 pt-3 border-t border-gray-100">
-                <div class="flex items-center gap-3">
-                    <span class="mono font-semibold ${articleColor}">${d.articles}</span>
-                    <span class="text-[10px] text-gray-400">articles</span>
-                    <span class="mono text-[10px] text-gray-400">${d.sourcesCount} sources</span>
-                </div>
-                <a href="${d.file}" target="_blank" class="text-xs bg-amaran-purple text-white px-3 py-1 rounded hover:bg-amaran-purple-light no-underline">Open</a>
-            </div>
-        </div>`;
-    }).join('');
+        container.innerHTML = filtered.map(d => buildCard(d, cfg.accent)).join('');
+    });
 }
 
 // --- Helpers ---
@@ -233,14 +240,12 @@ function formatShortDate(dateStr) {
 let searchTimer;
 document.getElementById('searchBox').addEventListener('input', () => {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(renderCards, 150);
+    searchTimer = setTimeout(renderColumns, 150);
 });
 
 // --- Init ---
-initFilters();
 renderStats();
-renderDomainBar();
-renderCards();
+renderColumns();
 </script>
 </body>
 </html>
