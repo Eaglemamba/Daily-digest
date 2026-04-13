@@ -294,51 +294,62 @@ Output as **interactive HTML artifact** with:
 - Checkbox selection per article
 - **"Read →" button** on each article for direct navigation
 - Floating action bar showing selection count
-- Export button generating clean text for clipboard copy
+- Export button generating **downloadable JSON file** (`YYYY-MM-DD.json`) with full article content
 - Articles grouped by source
 - All timestamps displayed in TST
 - **Source Status section** at bottom showing ✔/⚠/✗ for each source
 
 -----
 
-## Export Format
+## Export Format — JSON Download
 
-When user clicks "Export Selected", generate clean text format:
+When user clicks "Export Selected", the artifact must trigger a **browser JSON file download** (not clipboard text).
 
+### Article Data Object
+
+Each article in the HTML artifact JavaScript must store a complete object:
+
+```javascript
+{
+  id: "unique-string-id",
+  route: "pharma-decipher",    // "pharma-decipher" | "hbr-review" | "ai-articles"
+  category: "FDA+",
+  title: "Full article title",
+  source: "Endpoints News",
+  url: "https://...",
+  date: "2026-04-13",
+  time_tst: "14:30",
+  summary: "One-line summary from newsletter",
+  full_content: "Complete article text extracted from newsletter email body — include all paragraphs, bullet points, and key details from the email"
+}
 ```
-📋 Daily Digest Export — [DATE]
-Selected: X articles
 
-═══════════════════════════════════════════════
+### Export Button JavaScript
 
-▶ PHARMA-DECIPHER
-─────────────────────────────────────────────────
-
-[CATEGORY] Article Title
-Source: [SOURCE]
-[FULL_URL]
-
-▶ HBR-REVIEW
-─────────────────────────────────────────────────
-
-[CATEGORY] Article Title
-Source: [SOURCE]
-[FULL_URL]
-
-▶ AI-ARTICLES
-─────────────────────────────────────────────────
-
-[CATEGORY] Article Title
-Source: [SOURCE]
-[FULL_URL]
-
-═══════════════════════════════════════════════
-
-Routing Summary:
-• pharma-decipher: X articles
-• hbr-review: X articles
-• ai-articles: X articles
+```javascript
+function exportSelected() {
+  const selected = allArticles.filter(a => selectedIds.has(a.id));
+  const payload = {
+    date: digestDate,              // "YYYY-MM-DD"
+    exported_at: new Date().toISOString(),
+    articles: selected
+  };
+  const json = JSON.stringify(payload, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = digestDate + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 ```
+
+The downloaded file is named `YYYY-MM-DD.json` (e.g., `2026-04-13.json`).
+
+**User next step**: Move the downloaded file into `Daily-digest/queue/` — the 01:00 nightly trigger picks it up automatically and generates all bilingual HTMLs.
 
 -----
 

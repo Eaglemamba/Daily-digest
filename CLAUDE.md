@@ -51,6 +51,28 @@ All timestamps in **TST (UTC+8)**. The 24hr cutoff is calculated from current TS
 - **Exclude** `studio@endpointsnews.com` (webinar promos) from article extraction
 - If < 5 articles found, note "Light news day" in the digest header — do not backfill
 
+## Queue-Based Publisher Pipeline
+
+After reviewing the daily digest, export selected articles as a JSON file and drop it into `queue/`:
+
+```
+1. Daily Digest artifact → select articles → click "Export" → download YYYY-MM-DD.json
+2. Move file to: Daily-digest/queue/YYYY-MM-DD.json
+3. Nightly trigger at 01:00 TST automatically:
+   - Reads queue file
+   - Generates bilingual HTML for each article in the correct repo
+   - Moves queue file to queue/processed/
+   - Rebuilds indexes + pushes all repos
+```
+
+**Queue file format:** JSON with `date`, `exported_at`, and `articles` array.
+Each article includes: `route`, `category`, `title`, `source`, `url`, `date`, `time_tst`, `summary`, `full_content`.
+
+Route → Repo mapping:
+- `pharma-decipher` → `Pharma-news-decipher/docs/`
+- `hbr-review` → `Harvard-Business-Review/docs/`
+- `ai-articles` → `david-ai-learning/docs/`
+
 ## Repo Structure
 
 ```
@@ -59,6 +81,10 @@ Daily-digest/
 ├── README.md
 ├── SKILL_v6_1_5.md               ← Full workflow spec — read this first
 ├── CHANGELOG.md
+├── queue/                        ← Drop YYYY-MM-DD.json here after export
+│   ├── .gitkeep
+│   └── processed/                ← Processed queue files moved here automatically
+│       └── .gitkeep
 ├── sample/
 │   └── digest-sample.html
 └── digests/
