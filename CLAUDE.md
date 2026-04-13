@@ -53,6 +53,8 @@ All timestamps in **TST (UTC+8)**. The 24hr cutoff is calculated from current TS
 
 ## Queue-Based Publisher Pipeline
 
+Full spec: see `PUBLISHER_v1.0.md` in this repo.
+
 After reviewing the daily digest, export selected articles as a JSON file and drop it into `queue/`:
 
 ```
@@ -79,7 +81,8 @@ Route → Repo mapping:
 Daily-digest/
 ├── CLAUDE.md                     ← You are here
 ├── README.md
-├── SKILL_v6_1_5.md               ← Full workflow spec — read this first
+├── SKILL_v6_1_5.md               ← Daily digest workflow spec
+├── PUBLISHER_v1.0.md             ← Nightly publisher pipeline spec
 ├── CHANGELOG.md
 ├── queue/                        ← Drop YYYY-MM-DD.json here after export
 │   ├── .gitkeep
