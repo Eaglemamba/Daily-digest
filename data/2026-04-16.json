@@ -1,0 +1,214 @@
+{
+  "date": "2026-04-16",
+  "displayDate": "Wednesday, April 16, 2026",
+  "shortDate": "Apr 16, 2026",
+  "cutoffTime": "Apr 15, 07:11 TST",
+  "articleCount": 19,
+  "sourceCount": 4,
+  "domainCount": 3,
+  "lightNewsDay": false,
+  "sourceStatus": [
+    {"name": "Endpoints News", "status": "ok", "count": 5},
+    {"name": "BioPharma Dive", "status": "ok", "count": 1},
+    {"name": "HBR", "status": "warn", "detail": "1 found, 0 in 24hr (last: Apr 14, 21:06 TST)"},
+    {"name": "Leadership in Change", "status": "none"},
+    {"name": "Department of Product", "status": "none"},
+    {"name": "Ali Abdaal", "status": "none"},
+    {"name": "AI Maker", "status": "warn", "detail": "1 found, 0 in 24hr (last: Apr 14, 21:05 TST)"},
+    {"name": "Import AI", "status": "none"},
+    {"name": "The Batch (DeepLearning.AI)", "status": "ok", "count": 1},
+    {"name": "PDA", "status": "ok", "count": 2}
+  ],
+  "articles": [
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Former FDA cancer chief Pazdur warns of the political 'breach' of review teams",
+      "summary": "Richard Pazdur, who resigned as CDER director in December, warns of unprecedented political interference in FDA drug reviews. He says political appointees are now overruling review teams and that a commissioner called him to discuss a specific application for the first time in his career.",
+      "url": "https://endpoints.news/former-fda-cancer-chief-pazdur-warns-of-the-political-breach-of-review-teams/",
+      "time": "Apr 16, 03:23 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "FDA weighs support for compounding popular peptides, with advisory panel booked",
+      "summary": "FDA schedules Pharmacy Compounding Advisory Committee meeting for July 23-24 to discuss whether BPC-157 and TB-500 (the 'Wolverine stack') should be given the go-ahead for compounding. Products have been little-studied for efficacy and safety.",
+      "url": "https://endpoints.news/fda-weighs-support-for-compounding-popular-peptides/",
+      "time": "Apr 16, 06:29 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "FDA narrows in on search for new biologics and vaccines leader",
+      "summary": "FDA getting closer to announcing CBER director following Vinay Prasad's controversial tenure. Leading candidate is Houman Hemmati, a biotech exec and ophthalmologist who has raised questions about the Covid-19 vaccine.",
+      "url": "https://endpoints.news/fda-narrows-in-on-search-for-new-biologics-and-vaccines-leader/",
+      "time": "Apr 16, 01:00 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "FDA rejects Replimune cancer therapy, saying company didn't resolve trial doubts",
+      "summary": "FDA issues second CRL for Replimune's oncolytic virus therapy for advanced melanoma. Reviewers unanimously determined data insufficient to conclude substantial evidence of effectiveness. Same issues raised as first rejection in July.",
+      "url": "https://endpoints.news/fda-rejects-replimune-cancer-therapy-saying-company-didnt-resolve-trial-doubts/",
+      "time": "Apr 16, 01:00 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "FDA asks for data on Lilly's Foundayo to assess heart, liver risks",
+      "summary": "FDA flags possible heart and liver risks with Lilly's Foundayo, requesting more data for safety assessment. Updated story from the Early Edition.",
+      "url": "https://endpoints.news/fda-asks-for-more-data-on-lillys-foundayo-to-assess-heart-liver-risks/",
+      "time": "Apr 15, 19:37 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "FDA+",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "FDA plans another safety study of abortion drug after court order",
+      "summary": "FDA launches a nearly year-long study of mifepristone's REMS following a Louisiana court order. Will determine whether to change rules allowing telehealth dispensing. FDA had found no differences in adverse events between in-person and virtual delivery.",
+      "url": "https://endpoints.news/fda-plans-another-safety-study-of-abortion-drug-after-court-order/",
+      "time": "Apr 16, 01:00 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Deals",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Q1 deal report: China dominates big licensing deals as M&A starts 2026 with a bang",
+      "summary": "Chinese biotechs started 2026 hotter than ever on deals. Dealmaking continued apace, VC is recovering, and Asia stayed out front as the leading region for licensing pacts. Best Q1 on record for IPOs on Nasdaq/NYSE since 2021.",
+      "url": "https://endpoints.news/china-dominates-big-licensing-deals-as-ma-starts-2026-with-a-bang/",
+      "time": "Apr 16, 00:06 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Deals",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Biogen filing reveals Apellis deal details; Telix raises $600M; Obsidian to go public",
+      "summary": "Inside Biogen's $5.6B Apellis buyout: deal came together over nearly two years. Apellis tried a market check in March with seven other large biopharmas, all declined. CEO Francois to receive ~$195M payout. Also: Telix raises $600M, Obsidian IPO.",
+      "url": "https://endpoints.news/biogen-filing-reveals-apellis-deal-details-telix-raises-600m/",
+      "time": "Apr 16, 00:06 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Clinical",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "In vivo CAR-T race for autoimmune grows as two RNA startups enter the clinic",
+      "summary": "China's Immorna treated a systemic sclerosis patient with in vivo CAR-T; B cells undetectable at 2 weeks. Orna Therapeutics (being acquired by Lilly) started recruiting in Australia. Latest entrants after MagicRNA reported results in five lupus patients.",
+      "url": "https://endpoints.news/in-vivo-car-t-race-for-autoimmune-grows-as-two-rna-startups-enter-the-clinic/",
+      "time": "Apr 16, 00:06 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Clinical",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Replimune looks ahead as repeat CRL speeds the company's decline",
+      "summary": "Second CRL leading to multiple rounds of layoffs. CEO concedes both CRLs raised same issues about pivotal trial design and extent to which BMS's Opdivo helped. Company questioning agency's reasoning and pointing to potential political involvement.",
+      "url": "https://endpoints.news/replimune-looks-ahead-as-repeat-crl-speeds-the-companys-decline/",
+      "time": "Apr 16, 00:06 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Financing",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Revolution Medicines prices $2B raise as XBI reaches heights not seen since pandemic",
+      "summary": "Largest biotech public raise since Covid-19 pandemic, doubling expected amount after Phase 3 win in pancreatic cancer. XBI topped $135, highest since summer 2021. XBI up 29.1% in 6 months vs S&P 500's 4.9%.",
+      "url": "https://endpoints.news/revolution-medicines-prices-2b-raise-as-xbi-reaches-heights-not-seen-since-pandemic/",
+      "time": "Apr 16, 03:23 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Financing",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Biotech stocks are on a tear again: Signal insights",
+      "summary": "XBI up more than 30% in last six months, outpacing S&P 500 by 24 percentage points. Market emerging from uncertainty driven by Iran war. Biotech stocks fell ~7% after US/Israel bombing campaign Feb 28, reversed March 31 on wind-down reports.",
+      "url": "https://endpoints.news/biotech-stocks-are-on-a-tear-again/",
+      "time": "Apr 16, 03:23 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Financing",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Terremoto raises $108M to make an 'earthquake' in small molecule space",
+      "summary": "South San Francisco biotech secures $108M for first-in-human testing of next-gen small molecule drugs. Focusing on AKT1, a kinase regulating cell growth that can be a driver of disease in oncology.",
+      "url": "https://endpoints.news/terremoto-raises-108m-to-make-an-earthquake-in-small-molecule-space/",
+      "time": "Apr 15, 19:37 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Pipeline",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Beeline Medicines emerges as Bristol Myers' partner for shelved immunology drugs",
+      "summary": "Bain Capital launches Beeline Medicines with 5 assets from BMS in lupus, eczema, plaque psoriasis. Led by Saqib Islam, former SpringWorks CEO (acquired by Merck KGaA for $3.9B). Blueprint follows successful Bain spinout playbook.",
+      "url": "https://endpoints.news/beeline-medicines-emerges-as-bristol-myers-partner-for-shelved-immunology-drugs/",
+      "time": "Apr 16, 00:06 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Policy",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "PhRMA head Steve Ubl to step down at end of year",
+      "summary": "After more than a decade as CEO of pharma's powerful DC lobbying group. Had planned exit 18 months ago but stayed through first part of new administration. PhRMA spent ~$38M on lobbying last year. Timing gives months to search for new CEO ahead of pivotal election.",
+      "url": "https://endpoints.news/phrma-head-steve-ubl-to-step-down-according-to-sources/",
+      "time": "Apr 16, 01:00 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Policy",
+      "agent": "pharma-decipher",
+      "source": "Endpoints News",
+      "title": "Plan for remade CDC vaccine panel adds focus on vaccine safety, matching Kennedy's push",
+      "summary": "Revised ACIP charter expands member expertise to include toxicology, pediatric neurodevelopment, statistical analysis, health economics, and vaccine injury recovery. Published after judge suspended Trump admin's panel appointments.",
+      "url": "https://endpoints.news/plan-for-remade-acip-panel-adds-focus-on-vaccine-safety-matching-kennedys-push/",
+      "time": "Apr 16, 01:00 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Quality/Compliance",
+      "agent": "pharma-decipher",
+      "source": "PDA",
+      "title": "Free PDA Webinar: Visual Inspection Gaps in Parenteral Manufacturing",
+      "summary": "Apr 28 webinar covering recurring FDA 483 observations in visual inspection programs, gaps in inspection consistency and inspector qualification, and challenges with hard-to-inspect products (lyophilized, amber, suspensions). Includes industry case experiences.",
+      "url": "https://parenteral.pda.org/",
+      "time": "Apr 15, 11:04 TST"
+    },
+    {
+      "column": "pharma",
+      "category": "Quality/Compliance",
+      "agent": "pharma-decipher",
+      "source": "PDA",
+      "title": "PDA TRI Upcoming Training: Aseptic Processing, Lyophilization, E/L",
+      "summary": "PDA Training and Research Institute announces courses: Aseptic Processing (PDA 100, May 4-8), Fundamentals of Lyophilization (PDA 157, May 14-15), and Extractables/Leachables (PDA 577, May 14-15) in Bethesda, MD. Plus Interphex Apr 21-23.",
+      "url": "https://parenteral.pda.org/",
+      "time": "Apr 15, 21:00 TST"
+    },
+    {
+      "column": "ai",
+      "category": "AI",
+      "agent": "ai-articles",
+      "source": "DeepLearning.AI",
+      "title": "Spec-Driven Development with Coding Agents (New Course with JetBrains)",
+      "summary": "Andrew Ng's DeepLearning.AI partners with JetBrains on a free course teaching spec-driven development. Write project constitutions and feature specs, apply plan-implement-verify workflows, reduce cognitive overhead with coding agents, and package workflows into reusable agent skills. Includes 7-day Tamagotchi build challenge.",
+      "url": "https://www.deeplearning.ai/",
+      "time": "Apr 16, 04:12 TST"
+    }
+  ]
+}
